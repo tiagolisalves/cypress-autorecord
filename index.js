@@ -13,10 +13,12 @@ const blacklistRoutes = cypressConfig.blacklistRoutes || [];
 const whitelistHeaders = cypressConfig.whitelistHeaders || [];
 const supportedMethods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD'];
 
-const fileName = path.basename(
-  Cypress.spec.name,
-  path.extname(Cypress.spec.name),
-);
+const fileName = cypressConfig.completePath ? 
+      Cypress.spec.name : 
+      path.basename(
+        Cypress.spec.name,
+        path.extname(Cypress.spec.name),
+      );
 // The replace fixes Windows path handling
 const fixturesFolder = Cypress.config('fixturesFolder').replace(/\\/g, '/');
 const mocksFolder = path.join(fixturesFolder, '../mocks');
